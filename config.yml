@@ -1,0 +1,55 @@
+hired_employees_table:
+  table_details:
+    schema: employeesDB.employees.employees
+    table_name: hired_employees
+    description: This table has data regarding hires per department
+  columns:
+    id:
+      description: Id of the hire entry
+      column_type: INT
+      column_length: 1
+    full_name:
+      description: Name of the hired employee
+      column_type: VARCHAR
+      column_length: 255
+    hired_date:
+      description: Datetime of the hire
+      column_type: TIMESTAMP
+      column_length: 1
+    department:
+      description: Department of the employee
+      column_type: VARCHAR
+      column_length: 255
+    job_position:
+      description: Position of the employee
+      column_type: VARCHAR
+      column_length: 255
+departments_table:
+  table_details:
+    schema: employeesDB.employees.employees
+    table_name: departments
+    description: This table has data regarding the company departments
+  columns:
+    id:
+      description: Id of the hire entry
+      column_type: INT
+      column_length: 1
+    full_name:
+      description: Name of the department
+      column_type: VARCHAR
+      column_length: 255
+jobs_table:
+  table_details:
+    schema: employeesDB.employees.employees
+    table_name: jobs
+    description: This table has data regarding the company positions
+  columns:
+    id:
+      description: Id of the job
+      column_type: INT
+      column_length: 1
+    full_name:
+      description: Name of the job position
+      column_type: VARCHAR
+      column_length: 255
+
