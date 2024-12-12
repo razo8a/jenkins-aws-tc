@@ -12,8 +12,8 @@ pipeline {
         stage('Identify New Files') {
             agent {
                 docker {
-                    image 'amazon/aws-cli'
-                    args "--entrypoint=''"
+                    image 'ubuntu:noble'
+                    args '-u root'
                     reuseNode true
                 }
             }
