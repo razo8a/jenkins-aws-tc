@@ -21,7 +21,6 @@ pipeline {
             steps {
                 script {
                     sh 'apt-get update && apt-get install -y git'
-                    sh 'git fetch --unshallow'
 
                     def addedFiles = sh(
                         script: "git diff --name-status HEAD~1 HEAD | awk '/^A/{print \$2}' | grep '^data-catalog-configs/'",
