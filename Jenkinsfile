@@ -49,7 +49,7 @@ pipeline {
                     script {
                         def files = env.ADDED_FILES.split('\n')
                         for (file in files) {
-                            sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/${file}"
+                            sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/OpenMetadata/${file}"
                         }
                     }
                 }
