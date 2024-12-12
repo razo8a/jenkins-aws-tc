@@ -52,16 +52,12 @@ pipeline {
 
             steps {
                 withCredentials([usernamePassword(credentialsId: 'tc-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
-                    sh '''
-                        aws --version
-                        aws s3 ls s3://$AWS_S3_BUCKET/OpenMetadata/
-                    '''
                     script {
                         if (env.ADDED_FILES) {
                             def files = env.ADDED_FILES.split('\n')
                             for (file in files) {
                                 def fileName = file.replaceFirst('^data-catalog-configs/', '')
-                                sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/OpenMetadata/${fileName}"
+                                sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/data-dictionary/${fileName}"
                             }
                         } else {
                             echo "No new files found to upload."
