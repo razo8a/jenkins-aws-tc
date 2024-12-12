@@ -9,18 +9,11 @@ pipeline {
             }
         }
 
-        stages {
-            stage('Docker Image') {
-                steps {
-                    sh 'docker build -t git-bash .'
-                }
-            }
-        }
-
         stage('Identify New Files') {
             agent {
                 docker {
-                    image 'git-bash'
+                    image 'amazon/aws-cli'
+                    args "--entrypoint=''"
                     reuseNode true
                 }
             }
