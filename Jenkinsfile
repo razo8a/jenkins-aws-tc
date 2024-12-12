@@ -9,7 +9,22 @@ pipeline {
             }
         }
 
+        stages {
+            stage('Docker Image') {
+                steps {
+                    sh 'docker build -t git-bash .'
+                }
+            }
+        }
+
         stage('Identify New Files') {
+            agent {
+                docker {
+                    image 'git-bash'
+                    reuseNode true
+                }
+            }
+
             steps {
                 script {
                     def addedFiles = sh(
