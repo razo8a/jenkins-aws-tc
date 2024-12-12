@@ -10,18 +10,18 @@ pipeline {
         }
 
         stage('Identify New Files') {
-            agent {
+            /*agent {
                 docker {
                     image 'ubuntu:noble'
                     args '-u root'
                     reuseNode true
                 }
-            }
+            }*/
 
             steps {
                 script {
-                    sh 'apt-get update && apt-get install -y git'
-
+                    //sh 'apt-get update && apt-get install -y git'
+                    sh 'git --version'
                     def addedFiles = sh(
                         script: "git diff --name-status HEAD~1 HEAD | awk '/^A/{print \$2}' | grep '^data-catalog-configs/'",
                         returnStdout: true
