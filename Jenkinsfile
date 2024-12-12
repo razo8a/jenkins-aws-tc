@@ -47,9 +47,13 @@ pipeline {
                         aws s3 ls s3://$AWS_S3_BUCKET/OpenMetadata/
                     '''
                     script {
-                        def files = env.ADDED_FILES.split('\n')
-                        for (file in files) {
-                            sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/OpenMetadata/${file}"
+                        if (env.ADDED_FILES) {
+                            def files = env.ADDED_FILES.split('\n')
+                            for (file in files) {
+                                sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/OpenMetadata/${file}"
+                            }
+                        } else {
+                            echo "No new files found to upload."
                         }
                     }
                 }
