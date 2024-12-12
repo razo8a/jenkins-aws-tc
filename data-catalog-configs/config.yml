@@ -1,55 +1,90 @@
-hired_employees_table:
+covers_table:
   table_details:
-    schema: employeesDB.employees.employees
-    table_name: hired_employees
-    description: This table has data regarding hires per department
+    schema: "TuneCore.tunecore_production.tunecore_production"
+    table_name: covers
+    description: This table has data regarding song covers
   columns:
     id:
-      description: Id of the hire entry
+      description: Id of the cover
       column_type: INT
       column_length: 1
-    full_name:
-      description: Name of the hired employee
+    background_id:
+      description: Background ID
+      column_type: INT
+      column_length: 1
+    effect:
+      description: Cover effect
       column_type: VARCHAR
       column_length: 255
-    hired_date:
-      description: Datetime of the hire
+    background_effect_id:
+      description: Background cover effect id
+      column_type: INT
+      column_length: 1
+    artist:
+      description: Name of the artist
+      column_type: VARCHAR
+      column_length: 255
+    artist_typeface_id:
+      description: Artist type face ID
+      column_type: INT
+      column_length: 1
+    artist_typeface_pointsize:
+      description: Artist type face point size
+      column_type: INT
+      column_length: 1
+    artist_typeface_effect_id:
+      description: Artist type face effect ID
+      column_type: INT
+      column_length: 1
+    title:
+      description: Cover album title
+      column_type: VARCHAR
+      column_length: 255
+    title_typeface_id:
+      description: Title type face ID
+      column_type: INT
+      column_length: 1
+    title_typeface_pointsize:
+      description: Title type face point size
+      column_type: INT
+      column_length: 1
+    title_typeface_effect_id:
+      description: Title type face effect ID
+      column_type: INT
+      column_length: 1
+    layout_class:
+      description: Layout Class
+      column_type: VARCHAR
+      column_length: 255
+    artist_height:
+      description: Artist photo height
+      column_type: INT
+      column_length: 1
+    artist_width:
+      description: Artist photo width
+      column_type: INT
+      column_length: 1
+    title_height:
+      description: Cover album title height
+      column_type: INT
+      column_length: 1
+    title_width:
+      description: Cover album title width
+      column_type: INT
+      column_length: 1
+    created_at:
+      description: Cover album created timestamp
       column_type: TIMESTAMP
       column_length: 1
-    department:
-      description: Department of the employee
-      column_type: VARCHAR
-      column_length: 255
-    job_position:
-      description: Position of the employee
-      column_type: VARCHAR
-      column_length: 255
-departments_table:
-  table_details:
-    schema: employeesDB.employees.employees
-    table_name: departments
-    description: This table has data regarding the company departments
-  columns:
-    id:
-      description: Id of the hire entry
+    updated_at:
+      description: Cover album update timestamp
+      column_type: TIMESTAMP
+      column_length: 1
+    album_id:
+      description: Cover album ID
       column_type: INT
       column_length: 1
-    full_name:
-      description: Name of the department
+    s3_file_name:
+      description: Source S3 file path name
       column_type: VARCHAR
       column_length: 255
-jobs_table:
-  table_details:
-    schema: employeesDB.employees.employees
-    table_name: jobs
-    description: This table has data regarding the company positions
-  columns:
-    id:
-      description: Id of the job
-      column_type: INT
-      column_length: 1
-    full_name:
-      description: Name of the job position
-      column_type: VARCHAR
-      column_length: 255
-
