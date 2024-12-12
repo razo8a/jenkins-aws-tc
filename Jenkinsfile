@@ -9,6 +9,24 @@ pipeline {
             }
         }
 
+        stage('Identify New Files') {
+            steps {
+                script {
+                    def addedFiles = sh(
+                        script: "git diff --name-status HEAD~1 HEAD | awk '/^A/{print \$2}' | grep '^data-catalog-configs/'",
+                        returnStdout: true
+                    ).trim()
+
+                    if (addedFiles) {
+                        env.ADDED_FILES = addedFiles
+                    } else {
+                        echo 'No new files added.'
+                        currentBuild.result = 'SUCCESS'
+                    }
+                }
+            }
+        }
+
         stage('AWS') {
             agent {
                 docker {
@@ -27,9 +45,13 @@ pipeline {
                     sh '''
                         aws --version
                         aws s3 ls s3://$AWS_S3_BUCKET/OpenMetadata/
-                        echo "Hello S3!" > hello.txt
-                        aws s3 cp hello.txt s3://$AWS_S3_BUCKET/OpenMetadata/
                     '''
+                    script {
+                        def files = env.ADDED_FILES.split('\n')
+                        for (file in files) {
+                            sh "aws s3 cp ${file} s3://$AWS_S3_BUCKET/OpenMetadata/${file}"
+                        }
+                    }
                 }
             }
         }
