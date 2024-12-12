@@ -23,7 +23,7 @@ pipeline {
                     //sh 'apt-get update && apt-get install -y git'
                     sh 'git --version'
                     def addedFiles = sh(
-                        script: "git diff --name-status HEAD~1 HEAD | awk '/^A/{print \$2}' | grep '^data-catalog-configs/'",
+                        script: "git diff --name-status HEAD~1 HEAD | awk '/^A/{print \$2}' | grep '^data-catalog-configs/' || true",
                         returnStdout: true
                     ).trim()
 
